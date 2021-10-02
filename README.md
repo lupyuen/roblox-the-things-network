@@ -103,3 +103,52 @@ Which returns...
 ```json
 "frm_payload": "omF0GQTUYWwZCSs="
 ```
+
+# Roblox Fetching Sensor Data From The Things Network
+
+Roblox provides a Lua Scripting API that fetches External HTTP URLs (GET and POST)
+
+https://developer.roblox.com/en-us/api-reference/class/HttpService
+
+Here's how we call it to fetch the Sensor Data from The Things Network...
+
+```lua
+local HttpService = game:GetService("HttpService")
+
+-- URL to fetch Sensor Data from The Things Network (LoRa)
+local URL = "https://au1.cloud.thethings.network/api/v3/as/applications/YOUR_APPLICATION_ID/packages/storage/uplink_message?limit=1&order=-received_at"
+
+-- Change this to your API Key for The Things Network
+-- (Must have permission to Read Application Traffic)
+local HEADERS = {
+	["Authorization"] = "Bearer YOUR_API_KEY",
+}
+
+-- Fetch Sensor Data from The Things Network (LoRa)
+local function getSensorData()
+	local response
+	local data
+	-- Use pcall in case something goes wrong
+	pcall(function ()
+		response = HttpService:GetAsync(URL, false, HEADERS)
+		data = HttpService:JSONDecode(response)
+	end)
+	print("response:")
+	print(response)
+	print("data:")
+	print(data)
+	
+	-- Did our request fail or our JSON fail to parse?
+	if not data then return false end
+
+	return true
+end
+
+if getSensorData() then
+	print("Success")
+else
+	print("Something went wrong")
+end
+```
+
+Now we need to decode the payload with Base64 and CBOR to get the Sensor Data.
