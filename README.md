@@ -194,3 +194,9 @@ sensorData:
     ["t"] = 1236
 }
 ```
+
+The ModuleScripts were slightly modded from...
+
+https://github.com/iskolbin/lbase64/blob/master/base64.lua
+
+https://github.com/Zash/lua-cbor/blob/master/cbor.lua
