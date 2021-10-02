@@ -1,5 +1,7 @@
 # IoT Digital Twin with Roblox and The Things Network
 
+Follow the updates on Twitter: https://twitter.com/MisterTechBlog/status/1443824711050301444
+
 Let's connect Roblox to The Things Network (the public LoRa network)... And create an IoT Digital Twin for real-world objects...
 
 ![IoT Digital Twin with Roblox and The Things Network](https://lupyuen.github.io/images/digital-twin.jpg)
