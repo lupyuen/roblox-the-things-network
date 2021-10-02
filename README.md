@@ -152,3 +152,45 @@ end
 ```
 
 Now we need to decode the payload with Base64 and CBOR to get the Sensor Data.
+
+# Decode Base64 and CBOR in Roblox
+
+Under `ServerStorage`, create two ModuleScripts `Base64` and `Cbor`.
+
+Copy and paste the ModuleScripts from here...
+
+-   [`Base64`](Base64.lua)
+
+-   [`Cbor`](Cbor.lua)
+
+To test Base64 and CBOR Decoding...
+
+```lua
+-- Load the Base64 and CBOR ModuleScripts from ServerStorage
+local ServerStorage = game:GetService("ServerStorage")
+local base64 = require(ServerStorage.Base64)
+local cbor = require(ServerStorage.Cbor)
+
+-- Base64 Decode the Message Payload
+payload = base64.decode('omF0GQTUYWwZCSs=')
+print("payload:")
+print(payload)
+
+-- Decode the CBOR Map
+sensorData = cbor.decode(payload)
+print("sensorData:")
+print(sensorData)
+```
+
+We should see...
+
+```text
+payload:
+�at�al
+
+sensorData:
+{
+    ["l"] = 2347,
+    ["t"] = 1236
+}
+```
