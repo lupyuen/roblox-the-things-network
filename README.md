@@ -195,8 +195,20 @@ sensorData:
 }
 ```
 
-The ModuleScripts were slightly modded from...
+The ModuleScripts were copied from...
 
 https://github.com/iskolbin/lbase64/blob/master/base64.lua
 
 https://github.com/Zash/lua-cbor/blob/master/cbor.lua
+
+This line in [base64.lua](https://github.com/iskolbin/lbase64/blob/master/base64.lua) was changed from...
+
+```lua
+local extract = _G.bit32 and _G.bit32.extract
+```
+
+To...
+
+```lua
+local extract = bit32 and bit32.extract
+```
