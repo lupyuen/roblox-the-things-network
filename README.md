@@ -26,7 +26,7 @@ Here's the command to fetch the latest Uplink Message...
 
 ```bash
 curl \
-    -G "https://au1.cloud.thethings.network/api/v3/as/applications/luppy-application/packages/storage/uplink_message" \
+    -G "https://au1.cloud.thethings.network/api/v3/as/applications/$YOUR_APPLICATION_ID/packages/storage/uplink_message" \
     -H "Authorization: Bearer $YOUR_API_KEY" \
     -H "Accept: text/event-stream" \
     -d "limit=1" \
