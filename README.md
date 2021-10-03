@@ -128,6 +128,28 @@ Under the `Part`, create a `Script`.
 
 Copy and paste the script from [`DigitalTwin.lua`](DigitalTwin.lua)
 
+When we run this Roblox Script...
+
+```lua
+-- Fetch the Sensor Data from The Things Network (LoRa)
+local sensorData = getSensorData()
+
+-- Show the Temperature
+if sensorData then
+	print("Temperature:")
+	print(sensorData.t)
+else
+	print("Failed to get sensor data")
+end
+```
+
+We should see the Temperature Sensor Data fetched from The Things Network...
+
+```text
+Temperature:
+1236
+```
+
 # Decode Base64 and CBOR in Roblox
 
 Under `ServerStorage`, create two ModuleScripts: `Base64` and `Cbor`.
