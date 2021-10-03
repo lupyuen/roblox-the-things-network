@@ -216,7 +216,7 @@ To...
 local extract = bit32 and bit32.extract
 ```
 
-# Render Temperature With Particle Emitter
+# Render Temperature With Roblox Particle Emitter
 
 Let's use a Roblox Particle Emitter to show the Temperature (t) of our object...
 
