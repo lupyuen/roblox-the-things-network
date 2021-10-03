@@ -226,69 +226,124 @@ We have defined 3 Particle Emitters: Cold (t=0), Normal (t=5000), Hot (t=10000).
 
 To render the Temperature, we shall do Linear Interpolation of the 3 Particle Emitters...
 
-```text
+```yaml
 COLD Particle Emitter (t=0)
-Acceleration: 0, 0, 0
-Color: 0 0.333333 1 1 0 1 0.333333 1 1 0 
-Drag: 5
-EmissionDirection: Enum.NormalId.Top
-Lifetime: 5 10 
-LightEmission: 1
-LightInfluence: 1
-Orientation: Enum.ParticleOrientation.FacingCamera
-Rate: 20
-Rotation: 0 180 
-RotSpeed: -170 -170 
-Size: 0 1 0 1 1 0 
-Speed: 0 0 
-SpreadAngle: 10, 10
-Texture: rbxasset:textures/particles/sparkles_main.dds
-TimeScale: 1
-Transparency: 0 0 0 1 0 0 
-VelocityInheritance: 0
-ZOffset: 0
+  Acceleration: 0, 0, 0
+  Color: 0 0.333333 1 1 0 1 0.333333 1 1 0 
+  Drag: 5
+  EmissionDirection: Enum.NormalId.Top
+  Lifetime: 5 10 
+  LightEmission: 1
+  LightInfluence: 1
+  Orientation: Enum.ParticleOrientation.FacingCamera
+  Rate: 20
+  Rotation: 0 180 
+  RotSpeed: -170 -170 
+  Size: 0 1 0 1 1 0 
+  Speed: 0 0 
+  SpreadAngle: 10, 10
+  Texture: rbxasset:textures/particles/sparkles_main.dds
+  TimeScale: 1
+  Transparency: 0 0 0 1 0 0 
+  VelocityInheritance: 0
+  ZOffset: 0
 
 NORMAL Particle Emitter (t=5000)
-Acceleration: 0, 0, 0
-Color: 0 0.333333 0.666667 0 0 1 0.333333 0.666667 0 0 
-Drag: 10
-EmissionDirection: Enum.NormalId.Top
-Lifetime: 5 10 
-LightEmission: 0
-LightInfluence: 1
-Orientation: Enum.ParticleOrientation.FacingCamera
-Rate: 20
-Rotation: 0 0 
-RotSpeed: 0 0 
-Size: 0 0.2 0 1 0.2 0 
-Speed: 5 5 
-SpreadAngle: 50, 50
-Texture: rbxasset:textures/particles/sparkles_main.dds
-TimeScale: 1
-Transparency: 0 0 0 1 0 0 
-VelocityInheritance: 0
-ZOffset: 0
+  Acceleration: 0, 0, 0
+  Color: 0 0.333333 0.666667 0 0 1 0.333333 0.666667 0 0 
+  Drag: 10
+  EmissionDirection: Enum.NormalId.Top
+  Lifetime: 5 10 
+  LightEmission: 0
+  LightInfluence: 1
+  Orientation: Enum.ParticleOrientation.FacingCamera
+  Rate: 20
+  Rotation: 0 0 
+  RotSpeed: 0 0 
+  Size: 0 0.2 0 1 0.2 0 
+  Speed: 5 5 
+  SpreadAngle: 50, 50
+  Texture: rbxasset:textures/particles/sparkles_main.dds
+  TimeScale: 1
+  Transparency: 0 0 0 1 0 0 
+  VelocityInheritance: 0
+  ZOffset: 0
 
 HOT Particle Emitter (t=10000)
-Acceleration: 0, 0, 0
-Color: 0 1 0.333333 0 0 1 1 0.333333 0 0 
-Drag: 0
-EmissionDirection: Enum.NormalId.Top
-Lifetime: 5 10 
-LightEmission: 0
-LightInfluence: 0
-Orientation: Enum.ParticleOrientation.FacingCamera
-Rate: 20
-Rotation: 0 0 
-RotSpeed: 0 0 
-Size: 0 0.4 0 1 0.4 0 
-Speed: 1 1 
-SpreadAngle: 50, 50
-Texture: rbxasset:textures/particles/sparkles_main.dds
-TimeScale: 1
-Transparency: 0 0 0 1 0 0 
-VelocityInheritance: 0
-ZOffset: 0
+  Acceleration: 0, 0, 0
+  Color: 0 1 0.333333 0 0 1 1 0.333333 0 0 
+  Drag: 0
+  EmissionDirection: Enum.NormalId.Top
+  Lifetime: 5 10 
+  LightEmission: 0
+  LightInfluence: 0
+  Orientation: Enum.ParticleOrientation.FacingCamera
+  Rate: 20
+  Rotation: 0 0 
+  RotSpeed: 0 0 
+  Size: 0 0.4 0 1 0.4 0 
+  Speed: 1 1 
+  SpreadAngle: 50, 50
+  Texture: rbxasset:textures/particles/sparkles_main.dds
+  TimeScale: 1
+  Transparency: 0 0 0 1 0 0 
+  VelocityInheritance: 0
+  ZOffset: 0
+```
+
+Values to be interpolated...
+
+```yaml
+Color:
+  COLD:
+    0 0.333333 1 1 0 
+    1 0.333333 1 1 0 
+  NORMAL:
+    0 0.333333 0.666667 0 0 
+    1 0.333333 0.666667 0 0 
+  HOT:
+    0 1 0.333333 0 0 
+    1 1 0.333333 0 0 
+
+Drag:
+  COLD: 5
+  NORMAL: 10
+  HOT: 0
+
+LightEmission: 
+  COLD: 1
+  NORMAL: 0
+  HOT: 0
+
+LightInfluence: 
+  COLD: 1
+  NORMAL: 1
+  HOT: 0
+
+Rotation: 
+  COLD: 0 180 
+  NORMAL: 0 0 
+  HOT: 0 0 
+
+RotSpeed: 
+  COLD: -170 -170 
+  NORMAL: 0 0 
+  HOT: 0 0 
+
+Size: 
+  COLD: 0 1 0 1 1 0 
+  NORMAL: 0 0.2 0 1 0.2 0 
+  HOT: 0 0.4 0 1 0.4 0 
+  
+Speed: 
+  COLD: 0 0 
+  NORMAL: 5 5 
+  HOT: 1 1 
+
+SpreadAngle: 
+  COLD: 10, 10
+  NORMAL: 50, 50
+  HOT: 50, 50
 ```
 
 The properties of the Particle Emitters were dumped with the `dumpParticleEmitter` function in [`DigitalTwin.lua`](DigitalTwin.lua).
