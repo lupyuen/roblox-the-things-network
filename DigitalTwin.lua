@@ -133,9 +133,10 @@ local function dumpParticleEmitter(emitter)
 	print(emitter.ZOffset)
 end
 
-print("COLD")
-dumpParticleEmitter(script.Parent.Cold)
-print("NORMAL")
-dumpParticleEmitter(script.Parent.Normal)
-print("HOT")
-dumpParticleEmitter(script.Parent.Hot)
+-- Dump the 3 Particle Emitters: Cold, Normal, Hot
+--print("COLD")
+--dumpParticleEmitter(script.Parent.Cold)
+--print("NORMAL")
+--dumpParticleEmitter(script.Parent.Normal)
+--print("HOT")
+--dumpParticleEmitter(script.Parent.Hot)
