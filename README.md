@@ -18,6 +18,10 @@ https://www.thethingsindustries.com/docs/integrations/storage/retrieve/
 
 This will be useful for educating kids about IoT, by creating digital mirrors of real-world objects.
 
+More about The Things Network...
+
+-   ["The Things Network on PineDio Stack BL604 RISC-V Board"](https://lupyuen.github.io/articles/ttn)
+
 # Fetch Sensor Data from The Things Network
 
 The Things Network exposes an API (HTTP GET) to fetch the Uplink Messages transmitted by our IoT Device...
