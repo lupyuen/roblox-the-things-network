@@ -126,6 +126,8 @@ Here's how we call it to fetch the Sensor Data from The Things Network...
 
 -   [`DigitalTwin.lua`](DigitalTwin.lua)
 
+Enable HTTP Requests: Click Home -> Game Settings -> Security -> Allow HTTP Requests
+
 Under `Workspace`, create a `Part`.
 
 Under the `Part`, create a `Script`.
