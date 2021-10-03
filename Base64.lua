@@ -1,5 +1,4 @@
 -- Based on https://github.com/iskolbin/lbase64/blob/master/base64.lua
-
 --[[
 
  base64 -- v1.5.3 public domain Lua base64 encoder/decoder
