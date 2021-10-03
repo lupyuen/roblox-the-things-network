@@ -218,7 +218,75 @@ local extract = bit32 and bit32.extract
 
 # TODO
 
-1.  Render the Temperature of the object with Roblox Particle Emitter
+1.  Render the Temperature of the object with Roblox Particle Emitter...
 
     https://youtu.be/38VcndHc2B0
     
+    We have defined 3 Particle Emitters: Cold (t=0), Normal (t=50), Hot (t=100).
+    
+    To render the Temperature, we shall do Linear Interpolation of the 3 Particle Emitters...
+
+    ```text
+    COLD
+    Acceleration: 0, 0, 0
+    Color: 0 0.333333 1 1 0 1 0.333333 1 1 0 
+    Drag: 5
+    EmissionDirection: Enum.NormalId.Top
+    Lifetime: 5 10 
+    LightEmission: 1
+    LightInfluence: 1
+    Orientation: Enum.ParticleOrientation.FacingCamera
+    Rate: 20
+    Rotation: 0 180 
+    RotSpeed: -170 -170 
+    Size: 0 1 0 1 1 0 
+    Speed: 0 0 
+    SpreadAngle: 10, 10
+    Texture: rbxasset:textures/particles/sparkles_main.dds
+    TimeScale: 1
+    Transparency: 0 0 0 1 0 0 
+    VelocityInheritance: 0
+    ZOffset: 0
+
+    NORMAL
+    Acceleration: 0, 0, 0
+    Color: 0 0.333333 0.666667 0 0 1 0.333333 0.666667 0 0 
+    Drag: 10
+    EmissionDirection: Enum.NormalId.Top
+    Lifetime: 5 10 
+    LightEmission: 0
+    LightInfluence: 1
+    Orientation: Enum.ParticleOrientation.FacingCamera
+    Rate: 20
+    Rotation: 0 0 
+    RotSpeed: 0 0 
+    Size: 0 0.2 0 1 0.2 0 
+    Speed: 5 5 
+    SpreadAngle: 50, 50
+    Texture: rbxasset:textures/particles/sparkles_main.dds
+    TimeScale: 1
+    Transparency: 0 0 0 1 0 0 
+    VelocityInheritance: 0
+    ZOffset: 0
+
+    HOT
+    Acceleration: 0, 0, 0
+    Color: 0 1 0.333333 0 0 1 1 0.333333 0 0 
+    Drag: 0
+    EmissionDirection: Enum.NormalId.Top
+    Lifetime: 5 10 
+    LightEmission: 0
+    LightInfluence: 0
+    Orientation: Enum.ParticleOrientation.FacingCamera
+    Rate: 20
+    Rotation: 0 0 
+    RotSpeed: 0 0 
+    Size: 0 0.4 0 1 0.4 0 
+    Speed: 1 1 
+    SpreadAngle: 50, 50
+    Texture: rbxasset:textures/particles/sparkles_main.dds
+    TimeScale: 1
+    Transparency: 0 0 0 1 0 0 
+    VelocityInheritance: 0
+    ZOffset: 0
+    ```
