@@ -112,6 +112,10 @@ Our Sensor Data is encoded with [CBOR](https://en.wikipedia.org/wiki/CBOR) to ke
 
 -   ["Fair Use of The Things Network"](https://lupyuen.github.io/articles/ttn#fair-use-of-the-things-network)
 
+More about CBOR Encoding...
+
+-   ["Encode Sensor Data with CBOR on BL602"](https://lupyuen.github.io/articles/cbor)
+
 # Roblox Fetching Sensor Data From The Things Network
 
 Roblox provides a Lua Scripting API that fetches External HTTP URLs (GET and POST)
