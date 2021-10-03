@@ -222,7 +222,7 @@ Let's use a Roblox Particle Emitter to show the Temperature (t) of our object...
 
 https://youtu.be/38VcndHc2B0
     
-We have defined 3 Particle Emitters: Cold (t=0), Normal (t=50), Hot (t=100).
+We have defined 3 Particle Emitters: Cold (t=0), Normal (t=5000), Hot (t=10000).
 
 To render the Temperature, we shall do Linear Interpolation of the 3 Particle Emitters...
 
@@ -248,7 +248,7 @@ Transparency: 0 0 0 1 0 0
 VelocityInheritance: 0
 ZOffset: 0
 
-NORMAL Particle Emitter (t=50)
+NORMAL Particle Emitter (t=5000)
 Acceleration: 0, 0, 0
 Color: 0 0.333333 0.666667 0 0 1 0.333333 0.666667 0 0 
 Drag: 10
@@ -269,7 +269,7 @@ Transparency: 0 0 0 1 0 0
 VelocityInheritance: 0
 ZOffset: 0
 
-HOT Particle Emitter (t=100)
+HOT Particle Emitter (t=10000)
 Acceleration: 0, 0, 0
 Color: 0 1 0.333333 0 0 1 1 0.333333 0 0 
 Drag: 0
