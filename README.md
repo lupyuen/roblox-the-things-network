@@ -108,6 +108,10 @@ Which returns...
 "frm_payload": "omF0GQTUYWwZCSs="
 ```
 
+Our Sensor Data is encoded with CBOR to keep the LoRa Packets small, due to the Fair Use policy of The Things Network...
+
+-   ["Fair Use of The Things Network"](https://lupyuen.github.io/articles/ttn#fair-use-of-the-things-network)
+
 # Roblox Fetching Sensor Data From The Things Network
 
 Roblox provides a Lua Scripting API that fetches External HTTP URLs (GET and POST)
