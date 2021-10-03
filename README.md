@@ -132,6 +132,8 @@ Under the `Part`, create a `Script`.
 
 Copy and paste the script from [`DigitalTwin.lua`](DigitalTwin.lua)
 
+Follow the steps in the next section to copy and paste the ModuleScripts for `Base64` and `Cbor`
+
 When we run this Roblox Script...
 
 ```lua
