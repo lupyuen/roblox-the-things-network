@@ -383,3 +383,7 @@ for t = T_MAX, T_MIN, -600 do
 	wait(4)
 end
 ```
+
+Here's how the Interpolating Particle Emitter looks...
+
+https://www.youtube.com/watch?v=3CP7ELTAFLg
