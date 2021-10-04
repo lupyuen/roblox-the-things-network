@@ -141,3 +141,62 @@ end
 --print("HOT")
 --dumpParticleEmitter(script.Parent.Hot)
 
+-- Create the Particle Emitter for Normal Temperature
+-- Based on https://developer.roblox.com/en-us/api-reference/class/ParticleEmitter
+local function createParticleEmitter()
+	local emitter = Instance.new("ParticleEmitter")
+	-- Number of particles = Rate * Lifetime
+	emitter.Rate = 20 -- Particles per second
+	emitter.Lifetime = NumberRange.new(5, 10) -- How long the particles should be alive (min, max)
+	emitter.Enabled = true 
+
+	-- Visual properties
+	emitter.Texture = "rbxassetid://6490035152" -- Texture for the particles: "star sparkle particle"
+
+	-- For Color, build a ColorSequence using ColorSequenceKeypoint
+	local colorKeypoints = {
+		-- API: ColorSequenceKeypoint.new(time, color)
+		ColorSequenceKeypoint.new( 0.0, Color3.new(0.3, 0.6, 0.0)),  -- At t=0: Green
+		ColorSequenceKeypoint.new( 1.0, Color3.new(0.3, 0.6, 0.0))   -- At t=1: Green
+	}
+	emitter.Color = ColorSequence.new(colorKeypoints)
+
+	-- For Transparency, build a NumberSequence using NumberSequenceKeypoint
+	local numberKeypoints = {
+		-- API: NumberSequenceKeypoint.new(time, size, envelop)
+		NumberSequenceKeypoint.new( 0.0, 0.0);    -- At t=0, fully opaque
+		NumberSequenceKeypoint.new( 1.0, 0.0);    -- At t=1, fully opaque
+	}
+	emitter.Transparency = NumberSequence.new(numberKeypoints)
+
+	-- Light Emission and Influence
+	emitter.LightEmission = 0 -- If 1: When particles overlap, multiply their color to be brighter
+	emitter.LightInfluence = 1 -- If 0: Don't be affected by world lighting
+
+	-- Speed properties
+	emitter.EmissionDirection = Enum.NormalId.Top -- Emit towards top
+	emitter.Speed = NumberRange.new(5.0, 5.0) -- Speed
+	emitter.Drag = 10.0 -- Apply drag to particle motion
+	emitter.VelocitySpread = NumberRange.new(0.0, 0.0)
+	emitter.VelocityInheritance = 0 -- Don't inherit parent velocity
+	emitter.Acceleration = Vector3.new(0.0, 0.0, 0.0)
+	emitter.LockedToPart = false -- Don't lock the particles to the parent 
+	emitter.SpreadAngle = Vector2.new(50.0, 50.0) -- Spread angle on X and Y
+
+	-- Simulation properties
+	local numberKeypoints2 = {
+		NumberSequenceKeypoint.new(0.0, 0.2);  -- Size at t=0
+		NumberSequenceKeypoint.new(1.0, 0.2); -- Size at t=1
+	}
+	emitter.Size = NumberSequence.new(numberKeypoints2)
+	emitter.ZOffset = 0.0 -- Render in front or behind the actual position
+	emitter.Rotation = NumberRange.new(0.0, 0.0) -- Rotation
+	emitter.RotSpeed = NumberRange.new(0.0) -- Do not rotate during simulation
+	
+	-- Add the emitter to our Part
+	emitter.Parent = script.Parent
+	return emitter
+end
+
+-- Create a Particle Emitter for Normal Temperature
+local emitter = createParticleEmitter()
