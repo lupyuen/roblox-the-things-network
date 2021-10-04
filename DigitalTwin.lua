@@ -312,8 +312,7 @@ local emitter = createParticleEmitter()
 updateParticleEmitter(emitter, T_MAX)
 wait(5)
 for t = T_MAX, T_MIN, -600 do
-	print("t:")
-	print(t)
+	print(string.format("t: %d", t))
 	updateParticleEmitter(emitter, t)
 	wait(4)
 end
