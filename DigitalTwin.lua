@@ -199,5 +199,121 @@ local function createParticleEmitter()
 	return emitter
 end
 
+-- Minimum, Maximum and Mid values for Temperature (t) that will be interpolated
+local T_MIN = 0
+local T_MAX = 10000
+local T_MID = (T_MIN + T_MAX) / 2
+
+-- Linear Interpolate the value of y, given that
+-- (1) x ranges from T_MIN to T_MAX
+-- (2) When x=T_MIN, y=yMin
+-- (3) When x=T_MID, y=yMid
+-- (4) When x=T_MAX, y=yMax
+local function lin(x, yMin, yMid, yMax)
+	local y
+	if x < T_MID then
+		-- Interpolate between T_MIN and T_MID
+		y = yMin + (yMid - yMin) * (x - T_MIN) / (T_MID - T_MIN)
+	else
+		-- Interpolate between T_MID and T_MAX
+		y = yMid + (yMax - yMid) * (x - T_MID) / (T_MAX - T_MID)
+	end	
+	-- Force y to be between yMin and yMax
+	if y < math.min(yMin, yMid, yMax) then
+		y = math.min(yMin, yMid, yMax)
+	end
+	if y > math.max(yMin, yMid, yMax) then
+		y = math.max(yMin, yMid, yMax)
+	end
+	return y
+end
+
+-- Update the Particle Emitter based on the Temperature t.
+-- t ranges from T_MIN to T_MAX.
+local function updateParticleEmitter(emitter, t)
+	-- Interpolate Color: (Red, Green, Blue)
+	-- COLD:   0.3, 1.0, 1.0
+	-- NORMAL: 0.3, 0.6, 0.0
+	-- HOT:    1.0, 0.3, 0.0
+	local color = Color3.new(
+		lin(t, 0.3, 0.3, 1.0),  -- Red
+		lin(t, 1.0, 0.6, 0.3),  -- Green
+		lin(t, 1.0, 0.0, 0.0)   -- Blue
+	)
+	local colorKeypoints = {
+		-- API: ColorSequenceKeypoint.new(time, color)
+		ColorSequenceKeypoint.new(0.0, color),  -- At time=0
+		ColorSequenceKeypoint.new(1.0, color)   -- At time=1
+	}
+	emitter.Color = ColorSequence.new(colorKeypoints)
+
+	-- Interpolate Drag:
+	-- COLD:   5
+	-- NORMAL: 10
+	-- HOT:    0
+	emitter.Drag = lin(t, 5.0, 10.0, 0.0)
+
+	-- Interpolate LightEmission: 
+	-- COLD:   1
+	-- NORMAL: 0
+	-- HOT:    0
+	emitter.LightEmission = lin(t, 1.0, 0.0, 0.0)
+
+	-- Interpolate LightInfluence: 
+	-- COLD:   1
+	-- NORMAL: 1
+	-- HOT:    0
+	emitter.LightInfluence = lin(t, 1.0, 1.0, 0.0)
+
+	-- Interpolate Rotation: 
+	-- COLD:   0.0 180.0 
+	-- NORMAL: 0.0 0.0 
+	-- HOT:    0.0 0.0 
+	local rotation = lin(t, 180.0, 0.0, 0.0)
+	emitter.Rotation = NumberRange.new(0.0, rotation) -- Rotation
+
+	-- Interpolate RotSpeed: 
+	-- COLD:   -170.0 
+	-- NORMAL: 0.0 
+	-- HOT:    0.0 
+	local rotSpeed = lin(t, -170.0, 0.0, 0.0)
+	emitter.RotSpeed = NumberRange.new(rotSpeed) -- Rotation speed
+
+	-- Interpolate Size: 
+	-- COLD:   1.0 
+	-- NORMAL: 0.2 
+	-- HOT:    0.4
+	local size = lin(t, 1.0, 0.2, 0.4)
+	local numberKeypoints2 = {
+		NumberSequenceKeypoint.new(0.0, size);  -- Size at time=0
+		NumberSequenceKeypoint.new(1.0, size);  -- Size at time=1
+	}
+	emitter.Size = NumberSequence.new(numberKeypoints2)
+
+	-- Interpolate Speed: 
+	-- COLD:   0.0 
+	-- NORMAL: 5.0 
+	-- HOT:    1.0
+	local speed = lin(t, 0.0, 5.0, 1.0)
+	emitter.Speed = NumberRange.new(speed, speed) -- Speed
+
+	-- Interpolate SpreadAngle: 
+	-- COLD:   10.0
+	-- NORMAL: 50.0
+	-- HOT:    50.0
+	local spreadAngle = lin(t, 10.0, 50.0, 50.0)
+	emitter.SpreadAngle = Vector2.new(spreadAngle, spreadAngle) -- Spread angle on X and Y
+end
+
 -- Create a Particle Emitter for Normal Temperature
 local emitter = createParticleEmitter()
+
+-- Gradually update the emitter for Temperature=10,000 to 0
+updateParticleEmitter(emitter, T_MAX)
+wait(5)
+for t = T_MAX, T_MIN, -600 do
+	print("t:")
+	print(t)
+	updateParticleEmitter(emitter, t)
+	wait(4)
+end
