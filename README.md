@@ -136,6 +136,8 @@ Copy and paste the script from [`DigitalTwin.lua`](DigitalTwin.lua)
 
 Follow the steps in the next section to copy and paste the ModuleScripts for `Base64` and `Cbor`
 
+To fetch the Sensor Data from The Things Network, we call `getSensorData` in [`DigitalTwin.lua`](DigitalTwin.lua)
+
 When we run this Roblox Script...
 
 ```lua
@@ -168,7 +170,7 @@ Copy and paste the ModuleScripts from...
 
 -   [`Cbor`](Cbor.lua)
 
-(Yep they needs to be __ModuleScripts__. Normal Scripts won't work)
+(Yep they need to be __ModuleScripts__. Normal Scripts won't work)
 
 To test Base64 and CBOR Decoding...
 
