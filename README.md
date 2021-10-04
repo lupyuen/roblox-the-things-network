@@ -349,3 +349,15 @@ SpreadAngle:
 ```
 
 The properties of the Particle Emitters were dumped with the `dumpParticleEmitter` function in [`DigitalTwin.lua`](DigitalTwin.lua).
+
+Note that `rbxasset` won't work for setting the Texture...
+
+```lua
+emitter.Texture = "rbxasset:textures/particles/sparkles_main.dds"
+```
+
+But `rbxassetid` works OK...
+
+```lua
+emitter.Texture = "rbxassetid://1266170131"
+```
