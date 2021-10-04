@@ -359,5 +359,5 @@ emitter.Texture = "rbxasset:textures/particles/sparkles_main.dds"
 But `rbxassetid` works OK...
 
 ```lua
-emitter.Texture = "rbxassetid://1266170131"
+emitter.Texture = "rbxassetid://6490035152" -- Texture for the particles: "star sparkle particle"
 ```
