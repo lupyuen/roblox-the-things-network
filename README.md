@@ -364,4 +364,21 @@ But `rbxassetid` works OK...
 emitter.Texture = "rbxassetid://6490035152"
 ```
 
-To create a Particle Emitter for Normal Temperature, we call `createParticleEmitter` in [`DigitalTwin.lua`](DigitalTwin.lua).
+To create a Particle Emitter for Normal Temperature, we call `createParticleEmitter` in [`DigitalTwin.lua`](DigitalTwin.lua)
+
+```lua
+-- Create a Particle Emitter for Normal Temperature
+local emitter = createParticleEmitter()
+```
+
+To interpolate the Particle Emitter for High / Mid / Low Temperatures, we call `updateParticleEmitter` in [`DigitalTwin.lua`](DigitalTwin.lua)
+
+```lua
+-- Gradually update the emitter for Temperature=10,000 to 0
+for t = T_MAX, T_MIN, -600 do
+	print("t:")
+	print(t)
+	updateParticleEmitter(emitter, t)
+	wait(4)
+end
+```
