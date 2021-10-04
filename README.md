@@ -375,9 +375,10 @@ To interpolate the Particle Emitter for High / Mid / Low Temperatures, we call `
 
 ```lua
 -- Gradually update the emitter for Temperature=10,000 to 0
+updateParticleEmitter(emitter, T_MAX)
+wait(5)
 for t = T_MAX, T_MIN, -600 do
-	print("t:")
-	print(t)
+	print(string.format("t: %d", t))
 	updateParticleEmitter(emitter, t)
 	wait(4)
 end
