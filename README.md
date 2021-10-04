@@ -160,13 +160,15 @@ Temperature:
 
 # Decode Base64 and CBOR in Roblox
 
-Under `ServerStorage`, create two ModuleScripts: `Base64` and `Cbor`.
+Under `ServerStorage`, create two __ModuleScripts__: `Base64` and `Cbor`.
 
 Copy and paste the ModuleScripts from...
 
 -   [`Base64`](Base64.lua)
 
 -   [`Cbor`](Cbor.lua)
+
+(Yep they needs to be __ModuleScripts__. Normal Scripts won't work)
 
 To test Base64 and CBOR Decoding...
 
