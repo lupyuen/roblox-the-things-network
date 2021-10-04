@@ -359,7 +359,8 @@ emitter.Texture = "rbxasset:textures/particles/sparkles_main.dds"
 But `rbxassetid` works OK...
 
 ```lua
--- Texture for the particles: "star sparkle particle"
+-- Texture for the particles: "star sparkle particle" by @Vupatu
+-- https://www.roblox.com/library/6490035152/star-sparkle-particle
 emitter.Texture = "rbxassetid://6490035152"
 ```
 
