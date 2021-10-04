@@ -150,8 +150,9 @@ local function createParticleEmitter()
 	emitter.Lifetime = NumberRange.new(5, 10) -- How long the particles should be alive (min, max)
 	emitter.Enabled = true 
 
-	-- Visual properties
-	emitter.Texture = "rbxassetid://6490035152" -- Texture for the particles: "star sparkle particle"
+	-- Texture for the particles: "star sparkle particle" by @Vupatu
+	-- https://www.roblox.com/library/6490035152/star-sparkle-particle
+	emitter.Texture = "rbxassetid://6490035152"
 
 	-- For Color, build a ColorSequence using ColorSequenceKeypoint
 	local colorKeypoints = {
