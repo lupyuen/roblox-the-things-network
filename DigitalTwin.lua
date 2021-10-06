@@ -36,6 +36,7 @@ local function getSensorData()
 
 	-- Wrap with pcall in case something goes wrong
 	pcall(function ()
+		
 		-- Fetch the data from The Things Network, no caching
 		response = HttpService:GetAsync(TTN_URL, false, headers)
 		
@@ -50,6 +51,8 @@ local function getSensorData()
 
 		-- Decode the CBOR Map to get Sensor Data
 		sensorData = cbor.decode(payload)
+		
+	-- End of pcall block
 	end)	
 	
 	-- Show the error
@@ -70,77 +73,6 @@ local function getSensorData()
 	return sensorData
 end
 
--- Fetch the Sensor Data from The Things Network (LoRa)
-local sensorData = getSensorData()
-
--- Show the Temperature
-if sensorData then
-	print("Temperature:")
-	print(sensorData.t)
-else
-	print("Failed to get sensor data")
-end
-
--- Test Base64 Decode the Message Payload
---payload = base64.decode('omF0GQTUYWwZCSs=')
---print("payload:")
---print(payload)
-
--- Test Decode CBOR Map
---sensorData = cbor.decode(payload)
---print("sensorData:")
---print(sensorData)
-
--- Dump the properties of the Particle Emitter
-local function dumpParticleEmitter(emitter)
-	print("Acceleration:")
-	print(emitter.Acceleration)
-	print("Color:")
-	print(emitter.Color)
-	print("Drag:")
-	print(emitter.Drag)
-	print("EmissionDirection:")
-	print(emitter.EmissionDirection)
-	print("Lifetime:")
-	print(emitter.Lifetime)
-	print("LightEmission:")
-	print(emitter.LightEmission)
-	print("LightInfluence:")
-	print(emitter.LightInfluence)
-	print("Orientation:")
-	print(emitter.Orientation)
-	print("Rate:")
-	print(emitter.Rate)
-	print("Rotation:")
-	print(emitter.Rotation)
-	print("RotSpeed:")
-	print(emitter.RotSpeed)
-	print("Size:")
-	print(emitter.Size)
-	print("Speed:")
-	print(emitter.Speed)
-	print("SpreadAngle:")
-	print(emitter.SpreadAngle)
-	print("Texture:")
-	print(emitter.Texture)
-	print("TimeScale:")
-	print(emitter.TimeScale)
-	print("Transparency:")
-	print(emitter.Transparency)
-	print("VelocityInheritance:")
-	print(emitter.VelocityInheritance)
-	print("ZOffset:")
-	print(emitter.ZOffset)
-end
-
--- Dump the 3 Particle Emitters: Cold, Normal, Hot
---print("COLD")
---dumpParticleEmitter(script.Parent.Cold)
---print("NORMAL")
---dumpParticleEmitter(script.Parent.Normal)
---print("HOT")
---dumpParticleEmitter(script.Parent.Hot)
-
 -- Create the Particle Emitter for Normal Temperature
 -- Based on https://developer.roblox.com/en-us/api-reference/class/ParticleEmitter
 local function createParticleEmitter()
@@ -150,6 +82,7 @@ local function createParticleEmitter()
 	emitter.Lifetime = NumberRange.new(5, 10) -- How long the particles should be alive (min, max)
 	emitter.Enabled = true 
 
+	-- Visual properties
 	-- Texture for the particles: "star sparkle particle" by @Vupatu
 	-- https://www.roblox.com/library/6490035152/star-sparkle-particle
 	emitter.Texture = "rbxassetid://6490035152"
@@ -157,16 +90,16 @@ local function createParticleEmitter()
 	-- For Color, build a ColorSequence using ColorSequenceKeypoint
 	local colorKeypoints = {
 		-- API: ColorSequenceKeypoint.new(time, color)
-		ColorSequenceKeypoint.new( 0.0, Color3.new(0.3, 0.6, 0.0)),  -- At t=0: Green
-		ColorSequenceKeypoint.new( 1.0, Color3.new(0.3, 0.6, 0.0))   -- At t=1: Green
+		ColorSequenceKeypoint.new( 0.0, Color3.new(0.3, 0.6, 0.0)),  -- At time=0: Green
+		ColorSequenceKeypoint.new( 1.0, Color3.new(0.3, 0.6, 0.0))   -- At time=1: Green
 	}
 	emitter.Color = ColorSequence.new(colorKeypoints)
 
 	-- For Transparency, build a NumberSequence using NumberSequenceKeypoint
 	local numberKeypoints = {
 		-- API: NumberSequenceKeypoint.new(time, size, envelop)
-		NumberSequenceKeypoint.new( 0.0, 0.0);    -- At t=0, fully opaque
-		NumberSequenceKeypoint.new( 1.0, 0.0);    -- At t=1, fully opaque
+		NumberSequenceKeypoint.new( 0.0, 0.0);    -- At time=0, fully opaque
+		NumberSequenceKeypoint.new( 1.0, 0.0);    -- At time=1, fully opaque
 	}
 	emitter.Transparency = NumberSequence.new(numberKeypoints)
 
@@ -186,8 +119,8 @@ local function createParticleEmitter()
 
 	-- Simulation properties
 	local numberKeypoints2 = {
-		NumberSequenceKeypoint.new(0.0, 0.2);  -- Size at t=0
-		NumberSequenceKeypoint.new(1.0, 0.2); -- Size at t=1
+		NumberSequenceKeypoint.new(0.0, 0.2);  -- Size at time=0
+		NumberSequenceKeypoint.new(1.0, 0.2);  -- Size at time=1
 	}
 	emitter.Size = NumberSequence.new(numberKeypoints2)
 	emitter.ZOffset = 0.0 -- Render in front or behind the actual position
@@ -305,14 +238,124 @@ local function updateParticleEmitter(emitter, t)
 	emitter.SpreadAngle = Vector2.new(spreadAngle, spreadAngle) -- Spread angle on X and Y
 end
 
--- Create a Particle Emitter for Normal Temperature
-local emitter = createParticleEmitter()
-
--- Gradually update the emitter for Temperature=10,000 to 0
-updateParticleEmitter(emitter, T_MAX)
-wait(5)
-for t = T_MAX, T_MIN, -600 do
-	print(string.format("t: %d", t))
-	updateParticleEmitter(emitter, t)
-	wait(4)
+-- For Testing: Dump the properties of the Particle Emitter
+local function dumpParticleEmitter(emitter)
+	print("Acceleration:")
+	print(emitter.Acceleration)
+	print("Color:")
+	print(emitter.Color)
+	print("Drag:")
+	print(emitter.Drag)
+	print("EmissionDirection:")
+	print(emitter.EmissionDirection)
+	print("Lifetime:")
+	print(emitter.Lifetime)
+	print("LightEmission:")
+	print(emitter.LightEmission)
+	print("LightInfluence:")
+	print(emitter.LightInfluence)
+	print("Orientation:")
+	print(emitter.Orientation)
+	print("Rate:")
+	print(emitter.Rate)
+	print("Rotation:")
+	print(emitter.Rotation)
+	print("RotSpeed:")
+	print(emitter.RotSpeed)
+	print("Size:")
+	print(emitter.Size)
+	print("Speed:")
+	print(emitter.Speed)
+	print("SpreadAngle:")
+	print(emitter.SpreadAngle)
+	print("Texture:")
+	print(emitter.Texture)
+	print("TimeScale:")
+	print(emitter.TimeScale)
+	print("Transparency:")
+	print(emitter.Transparency)
+	print("VelocityInheritance:")
+	print(emitter.VelocityInheritance)
+	print("ZOffset:")
+	print(emitter.ZOffset)
 end
+
+-- Demo Mode if we don't have an IoT Device connected to The Things Network.
+-- Gradually update our Particle Emitter for Temperature=10,000 to 0 and back to 10,000.
+local function demoMode(emitter)
+	-- Gradually update the emitter for Temperature=10,000 to 0
+	for t = T_MAX, T_MIN, -600 do
+		print(string.format("t: %d", t))
+		updateParticleEmitter(emitter, t)
+		wait(4)
+	end
+	
+	-- Gradually update the emitter for Temperature=0 to 10,000
+	for t = T_MIN, T_MAX, 600 do
+		print(string.format("t: %d", t))
+		updateParticleEmitter(emitter, t)
+		wait(4)
+	end
+end
+
+-- Main Function. Fetch and render the Sensor Data from The Things Network every 5 seconds.
+-- If fetch failed, show Demo Mode.
+local function main()	
+	-- Create a Particle Emitter for Normal Temperature
+	local emitter = createParticleEmitter()
+	
+	-- Loop forever fetching and rendering Sensor Data from The Things Network
+	while true do
+		-- Lua Table that will contain Sensor Data from The Things Network	
+		local sensorData = nil
+
+		-- Temperature from The Things Network. Ranges from 0 to 10,000.
+		local t = nil
+
+		-- If API Key for The Things Network is defined...
+		if TTN_API_KEY ~= "YOUR_API_KEY" then
+			-- Fetch the Sensor Data from The Things Network
+			sensorData = getSensorData()	
+
+			-- Get the Temperature if it exists
+			if sensorData then
+				t = sensorData.t
+			end
+		end
+
+		-- If Temperature was successfully fetched from The Things Network...
+		if t then
+			-- Render the Temperature with our Particle Emitter
+			print(string.format("t: %d", t))
+			updateParticleEmitter(t)
+		else
+			-- Else render our Particle Emitter in Demo Mode
+			print("Failed to get sensor data. Enter Demo Mode.")
+			demoMode(emitter)
+		end
+		
+		-- Sleep 5 seconds so we don't overwhelm The Things Network
+		wait(5)		
+	end
+end
+
+-- Start the Main Function
+main()
+
+-- For Testing: Base64 Decode for Message Payload
+-- payload = base64.decode('omF0GQTUYWwZCSs=')
+-- print("payload:")
+-- print(payload)
+
+-- For Testing: Decode CBOR Map
+-- sensorData = cbor.decode(payload)
+-- print("sensorData:")
+-- print(sensorData)
+
+-- For Testing: Dump the 3 Particle Emitters: Cold, Normal, Hot
+-- print("COLD")
+-- dumpParticleEmitter(script.Parent.Cold)
+-- print("NORMAL")
+-- dumpParticleEmitter(script.Parent.Normal)
+-- print("HOT")
+-- dumpParticleEmitter(script.Parent.Hot)
