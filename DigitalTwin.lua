@@ -327,7 +327,7 @@ local function main()
 		if t then
 			-- Render the Temperature with our Particle Emitter
 			print(string.format("t: %d", t))
-			updateParticleEmitter(t)
+			updateParticleEmitter(emitter, t)
 		else
 			-- Else render our Particle Emitter in Demo Mode
 			print("Failed to get sensor data. Enter Demo Mode.")
