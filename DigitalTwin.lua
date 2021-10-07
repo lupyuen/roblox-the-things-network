@@ -240,44 +240,25 @@ end
 
 -- For Testing: Dump the properties of the Particle Emitter
 local function dumpParticleEmitter(emitter)
-	print("Acceleration:")
-	print(emitter.Acceleration)
-	print("Color:")
-	print(emitter.Color)
-	print("Drag:")
-	print(emitter.Drag)
-	print("EmissionDirection:")
-	print(emitter.EmissionDirection)
-	print("Lifetime:")
-	print(emitter.Lifetime)
-	print("LightEmission:")
-	print(emitter.LightEmission)
-	print("LightInfluence:")
-	print(emitter.LightInfluence)
-	print("Orientation:")
-	print(emitter.Orientation)
-	print("Rate:")
-	print(emitter.Rate)
-	print("Rotation:")
-	print(emitter.Rotation)
-	print("RotSpeed:")
-	print(emitter.RotSpeed)
-	print("Size:")
-	print(emitter.Size)
-	print("Speed:")
-	print(emitter.Speed)
-	print("SpreadAngle:")
-	print(emitter.SpreadAngle)
-	print("Texture:")
-	print(emitter.Texture)
-	print("TimeScale:")
-	print(emitter.TimeScale)
-	print("Transparency:")
-	print(emitter.Transparency)
-	print("VelocityInheritance:")
-	print(emitter.VelocityInheritance)
-	print("ZOffset:")
-	print(emitter.ZOffset)
+	print("Acceleration:", emitter.Acceleration)
+	print("Color:", emitter.Color)
+	print("Drag:", emitter.Drag)
+	print("EmissionDirection:", emitter.EmissionDirection)
+	print("Lifetime:", emitter.Lifetime)
+	print("LightEmission:", emitter.LightEmission)
+	print("LightInfluence:", emitter.LightInfluence)
+	print("Orientation:", emitter.Orientation)
+	print("Rate:", emitter.Rate)
+	print("Rotation:", emitter.Rotation)
+	print("RotSpeed:", emitter.RotSpeed)
+	print("Size:", emitter.Size)
+	print("Speed:", emitter.Speed)
+	print("SpreadAngle:", emitter.SpreadAngle)
+	print("Texture:", emitter.Texture)
+	print("TimeScale:", emitter.TimeScale)
+	print("Transparency:", emitter.Transparency)
+	print("VelocityInheritance:", emitter.VelocityInheritance)
+	print("ZOffset:", emitter.ZOffset)
 end
 
 -- Demo Mode if we don't have an IoT Device connected to The Things Network.
@@ -285,14 +266,14 @@ end
 local function demoMode(emitter)
 	-- Gradually update the emitter for Temperature=10,000 to 0
 	for t = T_MAX, T_MIN, -600 do
-		print(string.format("t: %d", t))
+		print("t:", t)
 		updateParticleEmitter(emitter, t)
 		wait(4)
 	end
 	
 	-- Gradually update the emitter for Temperature=0 to 10,000
 	for t = T_MIN, T_MAX, 600 do
-		print(string.format("t: %d", t))
+		print("t:", t)
 		updateParticleEmitter(emitter, t)
 		wait(4)
 	end
@@ -326,7 +307,7 @@ local function main()
 		-- If Temperature was successfully fetched from The Things Network...
 		if t then
 			-- Render the Temperature with our Particle Emitter
-			print(string.format("t: %d", t))
+			print("t:", t)
 			updateParticleEmitter(emitter, t)
 		else
 			-- Else render our Particle Emitter in Demo Mode
@@ -341,6 +322,15 @@ end
 
 -- Start the Main Function
 main()
+
+-- For Testing: Fetch the Sensor Data from The Things Network (LoRa)
+-- local sensorData = getSensorData()
+-- if sensorData then
+--	 print("Temperature:")
+--	 print(sensorData.t)
+-- else
+--	 print("Failed to get sensor data")
+-- end
 
 -- For Testing: Base64 Decode for Message Payload
 -- payload = base64.decode('omF0GQTUYWwZCSs=')
