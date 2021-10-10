@@ -1,3 +1,6 @@
+-- Enable type checking
+--!strict
+
 -- TODO: Change this to your Application ID for The Things Network
 -- (Must have permission to Read Application Traffic)
 local TTN_APPLICATION_ID = "YOUR_APPLICATION_ID"
