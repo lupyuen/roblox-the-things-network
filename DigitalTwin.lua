@@ -114,7 +114,6 @@ local function createParticleEmitter()
 	emitter.EmissionDirection = Enum.NormalId.Top -- Emit towards top
 	emitter.Speed = NumberRange.new(5.0, 5.0) -- Speed
 	emitter.Drag = 10.0 -- Apply drag to particle motion
-	emitter.VelocitySpread = NumberRange.new(0.0, 0.0)
 	emitter.VelocityInheritance = 0 -- Don't inherit parent velocity
 	emitter.Acceleration = Vector3.new(0.0, 0.0, 0.0)
 	emitter.LockedToPart = false -- Don't lock the particles to the parent 
@@ -145,8 +144,8 @@ local T_MID = (T_MIN + T_MAX) / 2
 -- (2) When x=T_MIN, y=yMin
 -- (3) When x=T_MID, y=yMid
 -- (4) When x=T_MAX, y=yMax
-local function lin(x, yMin, yMid, yMax)
-	local y
+local function lin(x: number, yMin: number, yMid: number, yMax: number) : number
+	local y: number
 	if x < T_MID then
 		-- Interpolate between T_MIN and T_MID
 		y = yMin + (yMid - yMin) * (x - T_MIN) / (T_MID - T_MIN)
