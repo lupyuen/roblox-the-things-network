@@ -1,3 +1,4 @@
+--!strict
 -- From https://github.com/Zash/lua-cbor/blob/master/cbor.lua
 -- Concise Binary Object Representation (CBOR)
 -- RFC 7049
