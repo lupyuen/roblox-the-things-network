@@ -1,3 +1,4 @@
+--!strict
 -- Based on https://github.com/iskolbin/lbase64/blob/master/base64.lua
 --[[
 
